@@ -254,6 +254,8 @@ module CASServer
     def self.init_database!
 
       unless config[:disable_auto_migrations]
+        #config[:database][:encoding] = "utf8"
+        #puts config[:database].inspect
         ActiveRecord::Base.establish_connection(config[:database])
         print_cli_message "Running migrations to make sure your database schema is up to date..."
         prev_db_log = ActiveRecord::Base.logger
